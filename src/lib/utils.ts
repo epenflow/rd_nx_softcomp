@@ -23,3 +23,20 @@ export const disableReactDevTools = () => {
     }
   }
 };
+
+export const castToBoolean: (value?: string | number) => boolean = (value) => {
+  const BOOLEAN_POSITIVES = ['1', 1, 'true', true];
+  const BOOLEAN_NEGATIVES = ['0', 0, 'false', false];
+
+  if (typeof value !== 'undefined') {
+    if (BOOLEAN_NEGATIVES.includes(value)) {
+      return false;
+    }
+
+    if (BOOLEAN_POSITIVES.includes(value)) {
+      return true;
+    }
+  }
+
+  return false;
+};

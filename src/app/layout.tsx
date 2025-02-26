@@ -3,7 +3,8 @@ import { ThemeProvider } from 'next-themes';
 import { Geist, Geist_Mono } from 'next/font/google';
 import Footer from '~/components/layouts/footer';
 import Navbar from '~/components/layouts/navbar';
-import { disableReactDevTools } from '~/lib/utils';
+import InvokeClient from '~/components/utils/invoke-client';
+import ReactScan from '~/components/utils/react-scan';
 import './globals.css';
 
 const geistSans = Geist({
@@ -26,19 +27,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  if (process.env.NODE_ENV === 'production') {
-    disableReactDevTools();
-  }
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {process.env.NODE_ENV === 'development' && (
-          <script
-            async
-            src="https://unpkg.com/react-scan/dist/auto.global.js"
-          />
-        )}
+        <ReactScan />
       </head>
 
       <body
@@ -52,6 +44,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
+        <InvokeClient />
       </body>
     </html>
   );
