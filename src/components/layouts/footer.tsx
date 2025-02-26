@@ -15,7 +15,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import { cn } from '~/lib/utils';
+import { cn, withMemo } from '~/lib/utils';
 import Button, { buttonVariants } from '../ui/button';
 import {
   Form,
@@ -33,7 +33,7 @@ import Container, { InnerContainer } from './container';
 const Sun = motion.create(BaseSun);
 const Moon = motion.create(BaseMoon);
 
-const Footer = () => {
+const Footer: React.FC = withMemo(() => {
   const { navigation } = resources;
 
   return (
@@ -93,9 +93,10 @@ const Footer = () => {
       </InnerContainer>
     </Container>
   );
-};
+});
+Footer.displayName = 'Footer';
 
-const DarkMode = () => {
+const DarkMode = withMemo(() => {
   const { resolvedTheme, setTheme } = useTheme();
 
   const onPress = React.useCallback(() => {
@@ -108,7 +109,7 @@ const DarkMode = () => {
 
   return (
     <div className="flex items-center gap-2">
-      <h1 className="text-sm font-medium grid [&_span]:[grid-area:1/1] h-fit overflow-hidden">
+      <p className="text-sm font-medium grid [&_span]:[grid-area:1/1] h-fit overflow-hidden">
         <motion.span
           animate={{
             opacity: resolvedTheme === 'dark' ? 0 : 1,
@@ -125,7 +126,7 @@ const DarkMode = () => {
           transition={{ duration: 0.5 }}>
           Dark
         </motion.span>
-      </h1>
+      </p>
 
       <Button
         onClick={onPress}
@@ -152,13 +153,13 @@ const DarkMode = () => {
       </Button>
     </div>
   );
-};
+});
 
 const getInTouchWithUsSchema = z.object({
   email: z.string().min(1, 'Email is required').email()
 });
 type GetInTouchWithUsSchema = z.infer<typeof getInTouchWithUsSchema>;
-const GetInTouchWithUs = () => {
+const GetInTouchWithUs: React.FC = withMemo(() => {
   const { socials } = resources;
   const form = useForm<GetInTouchWithUsSchema>({
     resolver: zodResolver(getInTouchWithUsSchema),
@@ -232,9 +233,10 @@ const GetInTouchWithUs = () => {
       </div>
     </div>
   );
-};
+});
+GetInTouchWithUs.displayName = 'GetInTouchWithUs';
 
-const InputWithButton: React.FC<InputProps> = ({ ...props }) => {
+const InputWithButton: React.FC<InputProps> = withMemo(({ ...props }) => {
   const { error } = useFormField();
 
   return (
@@ -252,7 +254,8 @@ const InputWithButton: React.FC<InputProps> = ({ ...props }) => {
       </Button>
     </div>
   );
-};
+});
+InputWithButton.displayName = 'InputWithButton';
 
 const resources = {
   navigation: [
