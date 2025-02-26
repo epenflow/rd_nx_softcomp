@@ -4,7 +4,6 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import Footer from '~/components/layouts/footer';
 import Navbar from '~/components/layouts/navbar';
 import InvokeClient from '~/components/utils/invoke-client';
-import ReactScan from '~/components/utils/react-scan';
 import './globals.css';
 
 const geistSans = Geist({
@@ -29,10 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <ReactScan />
-      </head>
-
+      <InvokeClient />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider
@@ -44,7 +40,6 @@ export default function RootLayout({
           {children}
           <Footer />
         </ThemeProvider>
-        <InvokeClient />
       </body>
     </html>
   );
