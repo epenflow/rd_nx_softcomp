@@ -16,8 +16,8 @@ const Hero = () => {
           </Text>
         </Block>
         <div className="space-x-2">
-          <Button>Coba gratis 1 bulan</Button>
-          <Button variant={'outline'}>Jadwalkan demo</Button>
+          <Button>Coba Gratis 1 Bulan</Button>
+          <Button variant="outline">Jadwalkan Demo</Button>
         </div>
         <div className="flex items-center gap-2 text-sm">
           <div className="flex -space-x-2">
