@@ -1,19 +1,11 @@
-import Container, { InnerContainer } from '~/components/layouts/container';
+import Feature from '~/components/sections/feature';
+import Hero from '~/components/sections/hero';
 
 export default function Home() {
   return (
     <>
-      <Container>
-        <InnerContainer>
-          <p>sd</p>
-        </InnerContainer>
-      </Container>
-
-      <Container>
-        <InnerContainer>
-          <p>sd</p>
-        </InnerContainer>
-      </Container>
+      <Hero />
+      <Feature />
     </>
   );
 }
