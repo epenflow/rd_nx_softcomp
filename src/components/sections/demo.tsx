@@ -15,7 +15,7 @@ const Demo = () => {
                 dibuat Softcomp.
               </Text>
             </Block>
-            <div className="space-x-2">
+            <div className="space-x-2 space-y-2">
               <Button>Coba Gratis 1 Bulan</Button>
               <Button variant="outline">Jadwalkan Demo</Button>
             </div>
