@@ -1,15 +1,14 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  Moon as BaseMoon,
-  Sun as BaseSun,
   Facebook,
   Instagram,
+  Moon,
   Send,
+  Sun,
   Twitter,
   type LucideIcon
 } from 'lucide-react';
-import { motion } from 'motion/react';
 import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import React from 'react';
@@ -17,6 +16,12 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { cn, withMemo } from '~/lib/utils';
 import Button, { buttonVariants } from '../ui/button';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger
+} from '../ui/dropdown-menu';
 import {
   Form,
   FormControl,
@@ -29,9 +34,6 @@ import {
 import Input, { type InputProps } from '../ui/input';
 import For from '../utils/for';
 import Container, { InnerContainer } from './container';
-
-const Sun = motion.create(BaseSun);
-const Moon = motion.create(BaseMoon);
 
 const Footer: React.FC = withMemo(() => {
   const { navigation } = resources;
@@ -97,61 +99,29 @@ const Footer: React.FC = withMemo(() => {
 Footer.displayName = 'Footer';
 
 const DarkMode = withMemo(() => {
-  const { resolvedTheme, setTheme } = useTheme();
-
-  const onPress = React.useCallback(() => {
-    if (resolvedTheme === 'dark') {
-      setTheme('light');
-    } else {
-      setTheme('dark');
-    }
-  }, [resolvedTheme, setTheme]);
+  const { setTheme } = useTheme();
 
   return (
-    <div className="flex items-center gap-2">
-      <p className="text-sm font-medium grid [&_span]:[grid-area:1/1] h-fit overflow-hidden">
-        <motion.span
-          animate={{
-            opacity: resolvedTheme === 'dark' ? 0 : 1,
-            y: resolvedTheme === 'dark' ? '-100%' : '0%'
-          }}
-          transition={{ duration: 0.5 }}>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button size="icon" variant="outline">
+          <Sun className="size-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute size-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <span className="sr-only">Toggle theme</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuItem onClick={() => setTheme('light')}>
           Light
-        </motion.span>
-        <motion.span
-          animate={{
-            opacity: resolvedTheme === 'dark' ? 1 : 0,
-            y: resolvedTheme === 'dark' ? '0%' : '100%'
-          }}
-          transition={{ duration: 0.5 }}>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('dark')}>
           Dark
-        </motion.span>
-      </p>
-
-      <Button
-        onClick={onPress}
-        className="grid [&_svg]:[grid-area:1/1] overflow-hidden">
-        <Moon
-          animate={{
-            opacity: resolvedTheme === 'dark' ? 1 : 0,
-            y: resolvedTheme == 'light' ? '100%' : '0%',
-            x: resolvedTheme == 'light' ? '100%' : '0%'
-          }}
-          transition={{ duration: 0.5 }}
-          className="size-4"
-        />
-        <Sun
-          animate={{
-            opacity: resolvedTheme === 'light' ? 1 : 0,
-            y: resolvedTheme == 'dark' ? '-100%' : '0%',
-            x: resolvedTheme == 'dark' ? '-100%' : '0%'
-          }}
-          transition={{ duration: 0.5 }}
-          className="size-4"
-        />
-        <span className="sr-only">Toggle theme</span>
-      </Button>
-    </div>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={() => setTheme('system')}>
+          System
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 });
 

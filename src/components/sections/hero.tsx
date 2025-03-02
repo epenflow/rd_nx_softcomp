@@ -6,8 +6,8 @@ import For from '../utils/for';
 
 const Hero = () => {
   return (
-    <Container className="h-fit">
-      <InnerContainer className="space-y-5 py-20 relative">
+    <Container>
+      <InnerContainer className="flex flex-col justify-center gap-5 relative">
         <Block>
           <Heading>Promosi mudah, Diskon berlapis, Pasti laku!</Heading>
           <Text>

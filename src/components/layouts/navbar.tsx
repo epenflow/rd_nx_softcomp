@@ -26,7 +26,7 @@ const Navbar = () => {
           )}>
           <Link href="/">Softcomp</Link>
         </h1>
-        <ul className={cn('flex items-center gap-2.5', 'ml-3')}>
+        <ul className={cn('hidden md:flex items-center gap-2.5', 'ml-3')}>
           <For each={navigation}>
             {(value, key) => (
               <li

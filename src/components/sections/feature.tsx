@@ -17,13 +17,13 @@ const Feature = () => {
   return (
     <Container className="h-fit">
       <InnerContainer className="relative [--offset-width:calc(100%-4rem)] overflow-clip">
-        <div
+        <span
           className={cn(
             'absolute h-full w-(--offset-width) [--polka-color:var(--border)] polka',
             'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'
           )}
         />
-        <div
+        <span
           className={cn(
             'absolute size-svw hidden md:block',
             'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2',
