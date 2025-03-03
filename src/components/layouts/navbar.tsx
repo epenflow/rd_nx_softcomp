@@ -19,19 +19,22 @@ const Navbar = () => {
           'container h-12',
           'flex items-center justify-between'
         )}>
-        <h1
-          className={cn(
-            buttonVariants({ variant: 'link', size: 'sm' }),
-            'p-0'
-          )}>
-          <Link href="/">Softcomp</Link>
-        </h1>
-        <ul className={cn('hidden md:flex items-center gap-2.5', 'ml-3')}>
+        <ul className={cn('flex items-center gap-2.5', 'ml-3')}>
+          <li
+            className={cn(
+              buttonVariants({ variant: 'link', size: 'sm' }),
+              'p-0'
+            )}>
+            <Link href="/">Softcomp</Link>
+          </li>
           <For each={navigation}>
             {(value, key) => (
               <li
                 key={key}
-                className={buttonVariants({ variant: 'link', size: 'sm' })}>
+                className={cn(
+                  buttonVariants({ variant: 'link', size: 'sm' }),
+                  'hidden md:inline-flex'
+                )}>
                 <Link href={value.href}>{value.label}</Link>
               </li>
             )}

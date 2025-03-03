@@ -7,7 +7,7 @@ import For from '../utils/for';
 const Hero = () => {
   return (
     <Container>
-      <InnerContainer className="flex flex-col justify-center gap-5 relative">
+      <InnerContainer className="flex flex-col justify-center gap-5 relative items-center text-center h-full w-full z-20">
         <Block>
           <Heading>Promosi mudah, Diskon berlapis, Pasti laku!</Heading>
           <Text>

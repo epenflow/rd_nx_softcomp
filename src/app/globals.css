@@ -88,6 +88,9 @@
   --lines-color: var(--border);
   --lines-size: 1px;
   --lines-rotation: 0deg;
+  --boxes-background: transparent;
+  --boxes-color: var(--border);
+  --boxes-size: 100px 100px;
 }
 /*
   ---break---
@@ -226,4 +229,16 @@
     var(--lines-background) var(--lines-size),
     var(--lines-background)
   );
+}
+
+@utility boxes {
+  background-color: var(--boxes-background);
+  opacity: 1;
+  background-image: linear-gradient(var(--boxes-color) 1px, transparent 1px),
+    linear-gradient(
+      to right,
+      var(--boxes-color) 1px,
+      var(--boxes-background) 1px
+    );
+  background-size: var(--boxes-size);
 }
